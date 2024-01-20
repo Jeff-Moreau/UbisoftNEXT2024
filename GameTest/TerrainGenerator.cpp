@@ -16,12 +16,10 @@ TerrainGenerator::~TerrainGenerator()
     p_Utilities = nullptr;
 }
 
-
-
 void TerrainGenerator::TerrainInit()
 {
     testSprite = App::CreateSprite(".\\TestData\\Textures.bmp", 16, 16);
-    testSprite->SetFrame(33);
+    testSprite->SetFrame(240);
     testSprite->SetScale(1.0f);
     App::Print(400, 400, "Hello");
 }
@@ -60,7 +58,6 @@ void TerrainGenerator::GenerateStartLocations()
     }
 }
 
-
 void TerrainGenerator::GenerateAcornLocation()
 {
     float randomHeight = p_Utilities->RandomNumber(HEIGHT_LOW, START_HEIGHT_LOW);
@@ -76,13 +73,15 @@ void TerrainGenerator::GenerateAcornLocation()
 void TerrainGenerator::GenerateTerrain()
 {
     float xLocation = (APP_INIT_WINDOW_WIDTH / TOTAL_SECTIONS);
-        float randomImage = p_Utilities->RandomNumber(1, 7);
+
     for (int i = 0; i < TOTAL_SECTIONS + 1; i++)
     {
         App::DrawLine(i * xLocation, m_SectionHeight[i], (i + 1) * xLocation, m_SectionHeight[i + 1]);
-        testSprite->SetFrame(240);
-        testSprite->SetPosition(i * xLocation, m_SectionHeight[i]);
-        testSprite->Draw();
+        /*if (m_SectionHeight[i] > 100)
+        {
+            testSprite->SetPosition(i * xLocation, m_SectionHeight[i]);
+            testSprite->Draw();
+        }*/
     }
 }
 

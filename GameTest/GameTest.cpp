@@ -8,13 +8,15 @@
 //------------------------------------------------------------------------
 #include "app\app.h"
 #include "TerrainGenerator.h"
+#include "ScreenManager.h"
 //------------------------------------------------------------------------
 
 //------------------------------------------------------------------------
 // Eample data....
 //------------------------------------------------------------------------
 //CSimpleSprite *testSprite;
-TerrainGenerator *p_Terrain;
+//TerrainGenerator* p_Terrain;
+ScreenManager* p_ScreenManager;
 
 //enum
 //{
@@ -30,8 +32,7 @@ TerrainGenerator *p_Terrain;
 //------------------------------------------------------------------------
 void Init()
 {
-	p_Terrain = new TerrainGenerator();
-	p_Terrain->TerrainInit();
+	ScreenManager::GetInstance().Init();
 	/*testSprite = App::CreateSprite(".\\TestData\\Textures.bmp",32,32);
 	testSprite->SetFrame(33);
 	testSprite->SetPosition(600.0f, 350.0f);
@@ -55,6 +56,7 @@ void Init()
 //------------------------------------------------------------------------
 void Update(float deltaTime)
 {
+	ScreenManager::GetInstance().Update(deltaTime);
 	//p_Terrain->GenerateStartLocations();
 	//------------------------------------------------------------------------
 	// Example Sprite Code....
@@ -127,7 +129,7 @@ void Update(float deltaTime)
 //------------------------------------------------------------------------
 void Render()
 {	
-	p_Terrain->GenerateTerrain();
+	ScreenManager::GetInstance().Render();
 	//------------------------------------------------------------------------
 	// Example Sprite Code....
 	//testSprite->Draw();

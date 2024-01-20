@@ -1,57 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="GameTest.cpp" />
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="App\app.cpp">
-      <Filter>API</Filter>
-    </ClCompile>
-    <ClCompile Include="App\main.cpp">
-      <Filter>API</Filter>
-    </ClCompile>
-    <ClCompile Include="App\SimpleController.cpp">
-      <Filter>API</Filter>
-    </ClCompile>
-    <ClCompile Include="App\SimpleSound.cpp">
-      <Filter>API</Filter>
-    </ClCompile>
-    <ClCompile Include="App\SimpleSprite.cpp">
-      <Filter>API</Filter>
-    </ClCompile>
     <ClCompile Include="stb_image\stb_image.cpp">
       <Filter>stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="TerrainGenerator.cpp" />
-    <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="GameTest.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainGenerator.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="App\app.cpp">
+      <Filter>API\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="App\main.cpp">
+      <Filter>API\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="App\SimpleController.cpp">
+      <Filter>API\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="App\SimpleSound.cpp">
+      <Filter>API\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="App\SimpleSprite.cpp">
+      <Filter>API\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>API\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenManager.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="MainMenuScreen.cpp" />
+    <ClCompile Include="PlayScreen.cpp" />
+    <ClCompile Include="ResultsScreen.cpp" />
+    <ClCompile Include="InstructionsScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="App\app.h">
-      <Filter>API</Filter>
-    </ClInclude>
-    <ClInclude Include="App\AppSettings.h">
-      <Filter>API</Filter>
-    </ClInclude>
-    <ClInclude Include="App\main.h">
-      <Filter>API</Filter>
-    </ClInclude>
-    <ClInclude Include="App\SimpleController.h">
-      <Filter>API</Filter>
-    </ClInclude>
-    <ClInclude Include="App\SimpleSound.h">
-      <Filter>API</Filter>
-    </ClInclude>
-    <ClInclude Include="App\SimpleSprite.h">
-      <Filter>API</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>API</Filter>
-    </ClInclude>
     <ClInclude Include="stb_image\stb_image.h">
       <Filter>stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="TerrainGenerator.h" />
-    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="Entity.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainGenerator.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="App\app.h">
+      <Filter>API\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="App\AppSettings.h">
+      <Filter>API\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="App\main.h">
+      <Filter>API\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="App\SimpleController.h">
+      <Filter>API\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="App\SimpleSound.h">
+      <Filter>API\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="App\SimpleSprite.h">
+      <Filter>API\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>API\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>API\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h" />
+    <ClInclude Include="MainMenuScreen.h" />
+    <ClInclude Include="PlayScreen.h" />
+    <ClInclude Include="ResultsScreen.h" />
+    <ClInclude Include="InstructionsScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="stb_image">
@@ -59,6 +101,18 @@
     </Filter>
     <Filter Include="API">
       <UniqueIdentifier>{f318918d-bb9f-4402-ae1c-4f72186d16f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{26e6427c-0632-4e5b-bf6a-693d1c0e43b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{eae41452-e8b2-45f7-ad5b-2fcd59e03bde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API\Headers">
+      <UniqueIdentifier>{40b89f1c-6115-4d2d-8b52-fa040b7796d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API\Sources">
+      <UniqueIdentifier>{bb5118c6-672a-4e3c-8c7a-e438fd655b1f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
