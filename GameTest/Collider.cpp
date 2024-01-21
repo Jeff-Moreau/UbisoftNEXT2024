@@ -5,10 +5,12 @@ Collider::Collider()
 {
     p_Utilities = new Utilities();
     m_CenterPoint = Vector2(VectorZero);
+
     for (int i = 0; i < 4; i++)
     {
         m_Corners[i] = (Vector2(VectorZero));
     }
+
     m_Width = 0;
     m_Height = 0;
 }

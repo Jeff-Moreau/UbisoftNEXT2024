@@ -17,10 +17,19 @@ public:
 
     void Init() override;
     void Update(float deltaTime) override;
+    void CollisionChecks();
+    void UpdateScores(float deltaTime);
+    void InputFunctions();
     void Render() override;
+
+    void DrawUI();
+
+    void DrawScores();
 
 private:
     void SetupEntities();
+
+    void SetupTextures();
     
 private:
     TerrainGenerator* p_Terrain;
@@ -30,15 +39,18 @@ private:
     CSimpleSprite* p_AppleTexture[10];
     Utilities* p_Utilities;
     Apple* p_Apple[10];
-    Squirrel* p_Squirrel;
+    Squirrel* p_PlayerSquirrel;
+    Squirrel* p_AISquirrel;
     Player* p_Player;
+    Player* p_AIPlayer;
     Tree* p_LeftTree;
     Tree* p_RightTree;
 
-    char const* m_NewX;
     bool m_IsTarget;
+    bool m_CanHitApples;
+    int m_Target;
+    float m_Count;
     float m_TargetX;
     float m_TargetY;
-    float m_Count;
 };
 #endif // !_PLAY_SCREEN_H

@@ -10,9 +10,13 @@ public:
     ~Apple();
 
     float GetTextureHeight();
+    float GetTextureWidth();
     void SetTextureScale(float size);
     void SetTextureFrame(float frame);
     bool IsOnGround();
+    void SetIsOnGround(bool yesNo);
+    void SetIsAlive(bool yesNo);
+    void IsHit(bool yesNo);
     void Init() override;
     void Update(float deltaTime) override;
     void Render() override;
@@ -20,5 +24,6 @@ public:
 private:
     CSimpleSprite* p_AppleTexture;
     bool m_IsOnGround;
+    bool m_Falling;
 };
 #endif // !_APPLE_H

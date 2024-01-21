@@ -3,6 +3,7 @@
 
 Apple::Apple()
 {
+    m_Falling = false;
     m_IsOnGround = false;
     p_Collider = new Collider();
     m_IsAlive = true;
@@ -28,6 +29,11 @@ float Apple::GetTextureHeight()
     return p_AppleTexture->GetHeight();
 }
 
+float Apple::GetTextureWidth()
+{
+    return p_AppleTexture->GetWidth();
+}
+
 void Apple::SetTextureScale(float size)
 {
     p_AppleTexture->SetScale(size);
@@ -43,12 +49,38 @@ bool Apple::IsOnGround()
     return m_IsOnGround;
 }
 
+void Apple::SetIsOnGround(bool yesNo)
+{
+    m_IsOnGround = yesNo;
+}
+
+void Apple::SetIsAlive(bool yesNo)
+{
+    m_IsAlive = yesNo;
+}
+
+void Apple::IsHit(bool yesNo)
+{
+    m_Falling = yesNo;;
+}
+
 void Apple::Init()
 {
 }
 
 void Apple::Update(float deltaTime)
 {
+    if (m_Falling)
+    {
+        m_Position.y = m_Position.y - 10;
+    }
+    
+    if ((m_Position.y - p_AppleTexture->GetHeight()) <= p_Terrain->GetTerrainHeightAt(m_Position.x))
+    {
+        m_Falling = false;
+        m_IsOnGround = true;
+    }
+
     p_AppleTexture->Update(deltaTime);
     p_AppleTexture->SetPosition(m_Position.x, m_Position.y);
     p_Collider->SetCenter(m_Position);
