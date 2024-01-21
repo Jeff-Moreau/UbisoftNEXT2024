@@ -1,14 +1,13 @@
-#ifndef _PLAYER_H
-#define _PLAYER_H
+#ifndef _AIPLAYER_H
+#define _AIPLAYER_H
 
 #include "Entity.h"
-#include "Squirrel.h"
 
-class Player : public Entity
+class AIPlayer : public Entity
 {
 public:
-    Player();
-    ~Player();
+    AIPlayer();
+    ~AIPlayer();
 
     float GetTextureHeight();
     int GetObjectID();
@@ -16,8 +15,8 @@ public:
     void SetAnimationType(AnimType animation);
     void SetTextureFrame(float frame);
     int GetTotalApples();
-    void SetTotalApples(int amount);
     void ResetPlayer();
+    void SetTotalApples(int amount);
     void Init() override;
     void Update(float deltaTime) override;
     void Render() override;
@@ -26,10 +25,10 @@ private:
     void SetupAnimations();
 
 private:
-    CSimpleSprite* p_PlayerTexture;
+    CSimpleSprite* p_AIPlayerTexture;
 
     float m_AnimationSpeed;
     int m_Object;
     int m_TotalApples;
 };
-#endif // !_PLAYER_H
+#endif // !_AIPLAYER_H

@@ -2,6 +2,7 @@
 #define _RESULTS_SCREEN_H
 
 #include "Screen.h"
+#include "ScreenManager.h"
 
 class ResultsScreen : public Screen
 {

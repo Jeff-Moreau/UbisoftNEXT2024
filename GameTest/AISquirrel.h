@@ -1,13 +1,13 @@
-#ifndef _SQUIRREL_H
-#define _SQUIRREL_H
+#ifndef _AISQUIRREL_H
+#define _AISQUIRREL_H
 
 #include "Entity.h"
 
-class Squirrel : public Entity
+class AISquirrel : public Entity
 {
 public:
-    Squirrel();
-    ~Squirrel();
+    AISquirrel();
+    ~AISquirrel();
 
     float GetTextureHeight();
     float GetTextureWidth();
@@ -25,7 +25,7 @@ private:
     void SetupAnimations();
 
 private:
-    CSimpleSprite* p_SquirrelTexture;
+    CSimpleSprite* p_AISquirrelTexture;
 
     float m_AnimationSpeed;
     float m_Count;
@@ -34,4 +34,4 @@ private:
     bool m_IsCollecting;
     float m_MoveSpeed;
 };
-#endif // !_SQUIRREL_H
+#endif // !_AISQUIRREL_H

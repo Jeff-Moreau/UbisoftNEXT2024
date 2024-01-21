@@ -70,6 +70,12 @@ void Player::SetTotalApples(int amount)
     m_TotalApples += amount;
 }
 
+void Player::ResetPlayer()
+{
+    m_TotalApples = 5;
+    m_IsAlive = true;
+}
+
 
 void Player::Init()
 {

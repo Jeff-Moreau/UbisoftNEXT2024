@@ -19,9 +19,6 @@ PlayScreen::PlayScreen()
 
 void PlayScreen::SetupEntities()
 {
-    p_PlayerSquirrel = new Squirrel();
-    p_AISquirrel = new Squirrel();
-    
     p_LeftTree = new Tree();
     p_LeftTree->SetTextureFrame(p_Utilities->RandomNumber(0,2));
     p_LeftTree->SetPosition(96, p_Terrain->GetTerrainHeightAt(96) + p_LeftTree->GetTextureHeight() * 0.4f);
@@ -29,12 +26,20 @@ void PlayScreen::SetupEntities()
     p_RightTree = new Tree();
     p_RightTree->SetTextureFrame(p_Utilities->RandomNumber(3,5));
     p_RightTree->SetPosition((WINDOW_WIDTH - 96), p_Terrain->GetTerrainHeightAt((WINDOW_WIDTH - 96)) + (p_RightTree->GetTextureHeight() * 0.4f));
+    
+    p_PlayerSquirrel = new Squirrel();
+    p_PlayerSquirrel->SetAnimationType(IDLE_RIGHT);
+    p_PlayerSquirrel->SetPosition(p_LeftTree->GetPosition().x, p_Terrain->GetTerrainHeightAt(p_LeftTree->GetPosition().x) + p_PlayerSquirrel->GetTextureHeight());
 
+    p_AISquirrel = new Squirrel();
+    p_AISquirrel->SetAnimationType(IDLE_LEFT);
+    p_AISquirrel->SetPosition(p_RightTree->GetPosition());
+    
     p_Player = new Player();
     p_Player->SetPosition(p_LeftTree->GetPosition().x, p_LeftTree->GetPosition().y);
     p_Player->SetAnimationType(IDLE_RIGHT);
 
-    p_AIPlayer = new Player();
+    p_AIPlayer = new AIPlayer();
     p_AIPlayer->SetPosition(p_RightTree->GetPosition().x, p_RightTree->GetPosition().y);
     p_AIPlayer->SetAnimationType(IDLE_LEFT);
 
@@ -42,7 +47,6 @@ void PlayScreen::SetupEntities()
     {
         p_Apple[i] = new Apple();
         p_Apple[i]->SetTextureScale(2);
-        p_Apple[i]->SetPosition(0,0);
     }
 
     for (int i = 0; i < 5; i++)
@@ -116,8 +120,23 @@ PlayScreen::~PlayScreen()
     delete p_PlayerSquirrel;
     p_PlayerSquirrel = nullptr;
 
+    delete p_AISquirrel;
+    p_AISquirrel = nullptr;
+
     delete p_Player;
     p_Player = nullptr;
+
+    delete p_AIPlayer;
+    p_AIPlayer = nullptr;
+
+    for (int i = 0; i < 10; i++)
+    {
+        delete p_Apple[i];
+        p_Apple[i] = nullptr;
+
+        delete p_AppleTexture[i];
+        p_AppleTexture[i] = nullptr;
+    }
 }
 
 void PlayScreen::Init()
@@ -132,12 +151,13 @@ void PlayScreen::Update(float deltaTime)
 
     p_Player->Update(deltaTime);
     p_AIPlayer->Update(deltaTime);
-    p_PlayerSquirrel->Update(deltaTime);
     p_LeftTree->Update(deltaTime);
     p_RightTree->Update(deltaTime);
+    p_PlayerSquirrel->Update(deltaTime);
 
     for (int i = 0; i < 10; i++)
     {
+        p_Apple[i]->TerrainHeight(p_Terrain->GetTerrainHeightAt(p_Apple[i]->GetPosition().x) + (p_Apple[i]->GetTextureHeight() * 0.5f));
         p_Apple[i]->Update(deltaTime);
     }
 
@@ -145,30 +165,54 @@ void PlayScreen::Update(float deltaTime)
 
     UpdateScores(deltaTime);
 
-    for (int i = 5; i < 10; i++)
-    {
-        if (p_Player->GetTotalApples() < 10 && p_Apple[i]->IsOnGround() && !p_PlayerSquirrel->Collecting())
-        {
-            p_PlayerSquirrel->GetApples();
-        }
-    }
+    PlayerSquirrelActions();
 
+    AISquirrelActions();
+
+    if (p_Player->GetTotalApples() == 10 || p_AIPlayer->GetTotalApples() == 10)
+    {
+        p_Player->ResetPlayer();
+        p_PlayerSquirrel->ResetSquirrel();
+        p_AIPlayer->ResetPlayer();
+        p_AISquirrel->ResetSquirrel();
+        for (int i = 0; i < 10; i++)
+        {
+            p_Apple[i]->ResetApple();
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            p_Apple[i]->SetPosition(p_LeftTree->GetPosition().x, (p_LeftTree->GetPosition().y + 170) - (i * 32));
+        }
+
+        for (int i = 5; i < 10; i++)
+        {
+            p_Apple[i]->SetPosition(p_RightTree->GetPosition().x, (p_RightTree->GetPosition().y + 325) - (i * 32));
+        }
+        ScreenManager::GetInstance().SetCurrentScreen(Results);
+    }
+}
+
+void PlayScreen::AISquirrelActions()
+{
     for (int i = 0; i < 5; i++)
     {
-        if (p_AIPlayer->GetTotalApples() < 10 && p_Apple[i]->IsOnGround() && !p_AISquirrel->Collecting())
+        if (p_AIPlayer->GetTotalApples() < 10 && p_Apple[i]->GetIsAlive() && p_Apple[i]->IsOnGround() && !p_AISquirrel->Collecting())
         {
             p_AISquirrel->GetApples();
         }
     }
+}
 
-    /*for (int i = 0; i < 10; i++)
+void PlayScreen::PlayerSquirrelActions()
+{
+    for (int i = 5; i < 10; i++)
     {
-        if (p_Apple[i]->IsOnGround())
+        if (p_Player->GetTotalApples() < 10 && p_Apple[i]->GetIsAlive() && p_Apple[i]->IsOnGround() && !p_PlayerSquirrel->Collecting())
         {
-            m_CanHitApples = false;
+            p_PlayerSquirrel->GetApples();
+            p_PlayerSquirrel->SetPosition(p_PlayerSquirrel->GetPosition().x, p_Terrain->GetTerrainHeightAt(p_PlayerSquirrel->GetPosition().x + 32) + (p_PlayerSquirrel->GetTextureHeight()));
         }
-    }*/
-
+    }
 }
 
 void PlayScreen::CollisionChecks()
@@ -197,19 +241,19 @@ void PlayScreen::CollisionChecks()
         }
     }
 
-    if (p_Apple[m_Target]->IsOnGround() && ((p_PlayerSquirrel->GetPosition().x + p_PlayerSquirrel->GetTextureWidth()) >= p_Apple[m_Target]->GetPosition().x - p_Apple[m_Target]->GetTextureWidth()))
+    if (p_Apple[m_Target]->GetIsAlive() && p_Apple[m_Target]->IsOnGround() && ((p_PlayerSquirrel->GetPosition().x + p_PlayerSquirrel->GetTextureWidth()) >= p_Apple[m_Target]->GetPosition().x - p_Apple[m_Target]->GetTextureWidth()))
     {
         p_PlayerSquirrel->PickUpApple();
         p_Player->SetTotalApples(1);
         p_AIPlayer->SetTotalApples(-1);
-        p_Apple[m_Target]->SetIsOnGround(false);
-        m_CanHitApples = true;
         p_Apple[m_Target]->SetIsAlive(false);
+        //p_Apple[m_Target]->SetIsOnGround(false);
+        m_CanHitApples = true;
+        //p_Apple[m_Target]->SetIsAlive(false);
         m_Target = 0;
-    }
-    else
-    {
-
+        p_PlayerSquirrel->ResetSquirrel();
+        p_PlayerSquirrel->SetPosition(p_LeftTree->GetPosition().x, p_Terrain->GetTerrainHeightAt(p_LeftTree->GetPosition().x));
+        p_PlayerSquirrel->SetAnimationType(IDLE_RIGHT);
     }
 }
 

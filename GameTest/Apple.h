@@ -16,6 +16,8 @@ public:
     bool IsOnGround();
     void SetIsOnGround(bool yesNo);
     void SetIsAlive(bool yesNo);
+    void ResetApple();
+    void TerrainHeight(float height);
     void IsHit(bool yesNo);
     void Init() override;
     void Update(float deltaTime) override;
@@ -25,5 +27,6 @@ private:
     CSimpleSprite* p_AppleTexture;
     bool m_IsOnGround;
     bool m_Falling;
+    float m_TerrainHeight;
 };
 #endif // !_APPLE_H

@@ -7,9 +7,11 @@ Squirrel::Squirrel()
     m_GetApple = false;
     m_PickUpApple = false;
     m_IsCollecting = false;
+    m_MoveSpeed = 5;
     m_Count = 0;
     m_IsAlive = true;
     m_Position = Vector2(VectorZero);
+
     p_SquirrelTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 4);
     p_SquirrelTexture->SetFrame(0);
     p_SquirrelTexture->SetPosition(0, 0);
@@ -28,11 +30,11 @@ void Squirrel::SetupAnimations()
     p_SquirrelTexture->CreateAnimation(IDLE_RIGHT, m_AnimationSpeed, { 0,1,2,3,4,5 });
     p_SquirrelTexture->CreateAnimation(MOVE_RIGHT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
     p_SquirrelTexture->CreateAnimation(COLLECT_RIGHT, m_AnimationSpeed, { 17,18,19,20,21,22 });
-    //p_SquirrelTexture->CreateAnimation(DIE_RIGHT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
-    //p_SquirrelTexture->CreateAnimation(IDLE_LEFT, m_AnimationSpeed, { 0,1,2,3,4,5 });
-    //p_SquirrelTexture->CreateAnimation(MOVE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
-    //p_SquirrelTexture->CreateAnimation(COLLECT_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
-    //p_SquirrelTexture->CreateAnimation(DIE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
+    p_SquirrelTexture->CreateAnimation(DIE_RIGHT, m_AnimationSpeed, { 25,26,27,28,29,30,31,32 });
+    p_SquirrelTexture->CreateAnimation(IDLE_LEFT, m_AnimationSpeed, { 0,1,2,3,4,5 });
+    p_SquirrelTexture->CreateAnimation(MOVE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
+    p_SquirrelTexture->CreateAnimation(COLLECT_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
+    p_SquirrelTexture->CreateAnimation(DIE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
 }
 
 Squirrel::~Squirrel()
@@ -76,6 +78,14 @@ bool Squirrel::Collecting()
     return m_IsCollecting;
 }
 
+void Squirrel::ResetSquirrel()
+{
+    m_GetApple = false;
+    m_PickUpApple = false;
+    m_IsCollecting = false;
+    m_IsAlive = true;
+}
+
 void Squirrel::Init()
 {
 }
@@ -92,8 +102,7 @@ void Squirrel::Update(float deltaTime)
     if (m_GetApple)
     {
         p_SquirrelTexture->SetAnimation(MOVE_RIGHT);
-        m_Position.x = m_Position.x + 0.7f;
-        m_Position.y = p_Terrain->GetTerrainHeightAt(m_Position.x + 32) + (p_SquirrelTexture->GetHeight() * 0.5f);
+        m_Position.x = m_Position.x + m_MoveSpeed;
     }
 
     if (m_PickUpApple)

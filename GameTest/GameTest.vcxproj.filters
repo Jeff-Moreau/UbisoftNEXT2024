@@ -67,6 +67,8 @@
     </ClCompile>
     <ClCompile Include="Acorn.cpp" />
     <ClCompile Include="Apple.cpp" />
+    <ClCompile Include="AIPlayer.cpp" />
+    <ClCompile Include="AISquirrel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image\stb_image.h">
@@ -140,6 +142,8 @@
     </ClInclude>
     <ClInclude Include="Acorn.h" />
     <ClInclude Include="Apple.h" />
+    <ClInclude Include="AIPlayer.h" />
+    <ClInclude Include="AISquirrel.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="API">

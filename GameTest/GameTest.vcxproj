@@ -177,6 +177,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Acorn.h" />
+    <ClInclude Include="AIPlayer.h" />
+    <ClInclude Include="AISquirrel.h" />
     <ClInclude Include="Apple.h" />
     <ClInclude Include="App\app.h" />
     <ClInclude Include="App\AppSettings.h" />
@@ -204,6 +206,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Acorn.cpp" />
+    <ClCompile Include="AIPlayer.cpp" />
+    <ClCompile Include="AISquirrel.cpp" />
     <ClCompile Include="Apple.cpp" />
     <ClCompile Include="App\app.cpp" />
     <ClCompile Include="App\main.cpp" />

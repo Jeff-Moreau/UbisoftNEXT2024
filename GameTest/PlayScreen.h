@@ -7,7 +7,9 @@
 #include "Squirrel.h"
 #include "Tree.h"
 #include "Player.h"
+#include "AIPlayer.h"
 #include "Apple.h"
+#include "ScreenManager.h"
 
 class PlayScreen : public Screen
 {
@@ -17,6 +19,8 @@ public:
 
     void Init() override;
     void Update(float deltaTime) override;
+    void AISquirrelActions();
+    void PlayerSquirrelActions();
     void CollisionChecks();
     void UpdateScores(float deltaTime);
     void InputFunctions();
@@ -42,7 +46,7 @@ private:
     Squirrel* p_PlayerSquirrel;
     Squirrel* p_AISquirrel;
     Player* p_Player;
-    Player* p_AIPlayer;
+    AIPlayer* p_AIPlayer;
     Tree* p_LeftTree;
     Tree* p_RightTree;
 
