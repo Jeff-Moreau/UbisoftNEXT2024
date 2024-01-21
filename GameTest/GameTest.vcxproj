@@ -176,40 +176,51 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Acorn.h" />
+    <ClInclude Include="Apple.h" />
     <ClInclude Include="App\app.h" />
     <ClInclude Include="App\AppSettings.h" />
     <ClInclude Include="App\main.h" />
     <ClInclude Include="App\SimpleController.h" />
     <ClInclude Include="App\SimpleSound.h" />
     <ClInclude Include="App\SimpleSprite.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="InstructionsScreen.h" />
     <ClInclude Include="MainMenuScreen.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="ResultsScreen.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="ScreenManager.h" />
+    <ClInclude Include="Squirrel.h" />
     <ClInclude Include="stb_image\stb_image.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TerrainGenerator.h" />
+    <ClInclude Include="Tree.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Acorn.cpp" />
+    <ClCompile Include="Apple.cpp" />
     <ClCompile Include="App\app.cpp" />
     <ClCompile Include="App\main.cpp" />
     <ClCompile Include="App\SimpleController.cpp" />
     <ClCompile Include="App\SimpleSound.cpp" />
     <ClCompile Include="App\SimpleSprite.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameTest.cpp" />
     <ClCompile Include="InstructionsScreen.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayScreen.cpp" />
     <ClCompile Include="ResultsScreen.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
+    <ClCompile Include="Squirrel.cpp" />
     <ClCompile Include="stb_image\stb_image.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -218,6 +229,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TerrainGenerator.cpp" />
+    <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>

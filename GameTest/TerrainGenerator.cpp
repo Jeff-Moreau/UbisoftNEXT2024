@@ -18,9 +18,9 @@ TerrainGenerator::~TerrainGenerator()
 
 void TerrainGenerator::TerrainInit()
 {
-    testSprite = App::CreateSprite(".\\TestData\\Textures.bmp", 16, 16);
-    testSprite->SetFrame(240);
-    testSprite->SetScale(1.0f);
+    testSprite = App::CreateSprite(".\\TestData\\Textures.bmp", 32, 32);
+    testSprite->SetFrame(1);
+    testSprite->SetScale(2.0f);
     App::Print(400, 400, "Hello");
 }
 
@@ -72,7 +72,7 @@ void TerrainGenerator::GenerateAcornLocation()
 
 void TerrainGenerator::GenerateTerrain()
 {
-    float xLocation = (APP_INIT_WINDOW_WIDTH / TOTAL_SECTIONS);
+    float xLocation = (WINDOW_WIDTH / TOTAL_SECTIONS);
 
     for (int i = 0; i < TOTAL_SECTIONS + 1; i++)
     {
@@ -87,7 +87,7 @@ void TerrainGenerator::GenerateTerrain()
 
 float TerrainGenerator::GetTerrainHeightAt(float xLocation)
 {
-    int terrainHeight = (xLocation * TOTAL_SECTIONS) / APP_INIT_WINDOW_WIDTH;
+    int terrainHeight = (xLocation * TOTAL_SECTIONS) / WINDOW_WIDTH;
 
     return m_SectionHeight[terrainHeight];
 }

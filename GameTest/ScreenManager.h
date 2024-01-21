@@ -8,17 +8,16 @@
 #include "ResultsScreen.h"
 #include "InstructionsScreen.h"
 
+enum Screens
+{
+    MainMenu,
+    Play,
+    Results,
+    Instructions
+};
+
 class ScreenManager
 {
-public:
-    enum Screens
-    {
-        MainMenu,
-        Play,
-        Results,
-        Instructions
-    };
-
 public:
     static ScreenManager &ScreenManager::GetInstance();
     ScreenManager();

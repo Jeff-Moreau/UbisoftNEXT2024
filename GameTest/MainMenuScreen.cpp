@@ -3,14 +3,31 @@
 
 MainMenuScreen::MainMenuScreen()
 {
-    p_Selector = App::CreateSprite(".\\TestData\\Textures.bmp", 16, 16);
-    p_Selector->SetFrame(240);
-    p_Selector->SetPosition((APP_INIT_WINDOW_WIDTH * 0.5f) - TEXT_SPACING, (APP_INIT_WINDOW_HEIGHT * 0.5f));
+    SetupSprites();
+
+    m_IsKeyWPressed = false;
+    m_IsKeySPressed = false;
+}
+
+void MainMenuScreen::SetupSprites()
+{
+    p_Selector = App::CreateSprite(".\\TestData\\Textures.bmp", 32, 32);
+    p_Selector->SetFrame(0);
+    p_Selector->SetPosition(HALF_WINDOW_WIDTH - TEXT_SPACING, OPTION_ONE_HEIGHT + (p_Selector->GetHeight() * 0.5f));
     p_Selector->SetScale(1.0f);
+
+    p_BackDrop = App::CreateSprite(".\\TestData\\Ubisoft-Toronto-NEXT.bmp", 1, 1);
+    p_BackDrop->SetPosition(HALF_WINDOW_WIDTH, HALF_WINDOW_HEIGHT);
+    p_BackDrop->SetScale(1.0f);
 }
 
 MainMenuScreen::~MainMenuScreen()
 {
+    delete p_Selector;
+    p_Selector = nullptr;
+
+    delete p_BackDrop;
+    p_BackDrop = nullptr;
 }
 
 void MainMenuScreen::Init()
@@ -19,26 +36,60 @@ void MainMenuScreen::Init()
 
 void MainMenuScreen::Update(float deltaTime)
 {
-    float selectorX;
-    float selectorY;
-    p_Selector->GetPosition(selectorX, selectorY);
-    float currentTime = 0.03f;
-    if (App::IsKeyPressed('W') && currentTime == 0.03f)
+    float currentX;
+    float currentY;
+    p_Selector->GetPosition(currentX, currentY);
+
+    if (App::IsKeyPressed('W') && currentY < OPTION_ONE_HEIGHT && !m_IsKeyWPressed)
     {
-        currentTime = deltaTime;
-        p_Selector->SetPosition(selectorX, selectorY + TEXT_SPACING);
+        p_Selector->SetPosition(currentX, currentY + TEXT_SPACING);
+        m_IsKeyWPressed = true;
+        App::PlaySound(".\\TestData\\Test.wav");
+    }
+    else if ((GetAsyncKeyState('W') & 0x8000) == 0)
+    {
+        m_IsKeyWPressed = false;
+    }
+
+    if (App::IsKeyPressed('S') && currentY > OPTION_THREE_HEIGHT + (p_Selector->GetHeight() * 0.5f) && !m_IsKeySPressed)
+    {
+        p_Selector->SetPosition(currentX, currentY - TEXT_SPACING);
+        m_IsKeySPressed = true;
+        App::PlaySound(".\\TestData\\Test.wav");
+    }
+    else if ((GetAsyncKeyState('S') & 0x8000) == 0)
+    {
+        m_IsKeySPressed = false;
+    }
+
+    if (App::IsKeyPressed(VK_RETURN))
+    {
+        if (currentY == OPTION_ONE_HEIGHT + (p_Selector->GetHeight() * 0.5f))
+        {
+            ScreenManager::GetInstance().SetCurrentScreen(Play);
+        }
+        else if (currentY == OPTION_TWO_HEIGHT + (p_Selector->GetHeight() * 0.5f))
+        {
+            ScreenManager::GetInstance().SetCurrentScreen(Play);
+        }
+        else if (currentY == OPTION_THREE_HEIGHT + (p_Selector->GetHeight() * 0.5f))
+        {
+            ScreenManager::GetInstance().SetCurrentScreen(Instructions);
+        }
     }
 }
 
 void MainMenuScreen::Render()
 {
+    p_BackDrop->Draw();
     p_Selector->Draw();
+
     OptionsList();
 }
 
 void MainMenuScreen::OptionsList()
 {
-    App::Print((APP_INIT_WINDOW_WIDTH * 0.5f), (APP_INIT_WINDOW_HEIGHT * 0.5f) + TEXT_SPACING, "1 PLAYER");
-    App::Print((APP_INIT_WINDOW_WIDTH * 0.5f), (APP_INIT_WINDOW_HEIGHT * 0.5f), "2 PLAYER");
-    App::Print((APP_INIT_WINDOW_WIDTH * 0.5f), (APP_INIT_WINDOW_HEIGHT * 0.5f) - TEXT_SPACING, "INSTRUCTIONS");
+    App::Print(HALF_WINDOW_WIDTH, OPTION_ONE_HEIGHT, "1 PLAYER");
+    App::Print(HALF_WINDOW_WIDTH, OPTION_TWO_HEIGHT, "2 PLAYER");
+    App::Print(HALF_WINDOW_WIDTH, OPTION_THREE_HEIGHT, "INSTRUCTIONS");
 }

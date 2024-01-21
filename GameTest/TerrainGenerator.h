@@ -16,6 +16,9 @@ private:
     const int HEIGHT_MAX = 100;
     const int HEIGHT_LOW = 80;
 
+    const int WINDOW_WIDTH = APP_INIT_WINDOW_WIDTH;
+    const int WINDOW_HEIGHT = APP_INIT_WINDOW_HEIGHT;
+
 public:
     TerrainGenerator();
     ~TerrainGenerator();

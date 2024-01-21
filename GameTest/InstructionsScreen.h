@@ -2,6 +2,7 @@
 #define _INSTRUCTIONS_SCREEN_H
 
 #include "Screen.h"
+#include "ScreenManager.h"
 
 class InstructionsScreen : public Screen
 {
@@ -12,5 +13,11 @@ public:
     void Init() override;
     void Update(float deltaTime) override;
     void Render() override;
+
+private:
+    void SetupSprites();
+
+private:
+    CSimpleSprite* p_Apple;
 };
 #endif // !_INSTRUCTIONS_SCREEN_H
