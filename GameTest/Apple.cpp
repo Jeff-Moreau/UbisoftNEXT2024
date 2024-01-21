@@ -74,7 +74,7 @@ void Apple::TerrainHeight(float height)
 
 void Apple::IsHit(bool yesNo)
 {
-    m_Falling = yesNo;;
+    m_Falling = yesNo;
 }
 
 void Apple::Init()

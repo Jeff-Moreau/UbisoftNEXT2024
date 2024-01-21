@@ -231,7 +231,8 @@ void PlayScreen::CollisionChecks()
     {
         if (m_CanHitApples && acornY <= (p_Apple[i]->GetPosition().y + (p_Apple[i]->GetTextureHeight())) &&
             acornY >= (p_Apple[i]->GetPosition().y - (p_Apple[i]->GetTextureHeight())) &&
-            acornX >= p_Apple[i]->GetPosition().x)
+            acornX >= p_Apple[i]->GetPosition().x - (p_Apple[i]->GetTextureWidth()) &&
+            acornX <= p_Apple[i]->GetPosition().x + (p_Apple[i]->GetTextureWidth()))
         {
             p_Apple[i]->IsHit(true);
             p_AcornBullet->SetPosition(p_Player->GetPosition().x, p_Player->GetPosition().y - (p_Player->GetTextureHeight() / 2));
@@ -254,6 +255,16 @@ void PlayScreen::CollisionChecks()
         p_PlayerSquirrel->ResetSquirrel();
         p_PlayerSquirrel->SetPosition(p_LeftTree->GetPosition().x, p_Terrain->GetTerrainHeightAt(p_LeftTree->GetPosition().x));
         p_PlayerSquirrel->SetAnimationType(IDLE_RIGHT);
+    }
+
+    if (acornY <= (p_PlayerSquirrel->GetPosition().y + (p_PlayerSquirrel->GetTextureHeight())) &&
+        acornY >= (p_PlayerSquirrel->GetPosition().y - (p_PlayerSquirrel->GetTextureHeight())) &&
+        acornX >= p_PlayerSquirrel->GetPosition().x - (p_PlayerSquirrel->GetTextureWidth()) &&
+        acornX <= p_PlayerSquirrel->GetPosition().x + (p_PlayerSquirrel->GetTextureWidth()))
+    {
+        p_PlayerSquirrel->SetPosition(p_LeftTree->GetPosition().x, p_Terrain->GetTerrainHeightAt(p_LeftTree->GetPosition().x) + p_PlayerSquirrel->GetTextureHeight());
+        p_AcornBullet->SetPosition(p_Player->GetPosition().x, p_Player->GetPosition().y - (p_Player->GetTextureHeight() / 2));
+        m_IsTarget = false;
     }
 }
 

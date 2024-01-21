@@ -86,6 +86,11 @@ void Squirrel::ResetSquirrel()
     m_IsAlive = true;
 }
 
+void Squirrel::IsHit()
+{
+    
+}
+
 void Squirrel::Init()
 {
 }

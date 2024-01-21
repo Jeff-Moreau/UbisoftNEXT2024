@@ -17,6 +17,7 @@ public:
     void PickUpApple();
     bool Collecting();
     void ResetSquirrel();
+    void IsHit();
     void Init() override;
     void Update(float deltaTime) override;
     void Render() override;
