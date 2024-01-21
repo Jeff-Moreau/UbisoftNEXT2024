@@ -27,7 +27,8 @@ private:
     CSimpleSprite* p_Selector;
     CSimpleSprite* p_BackDrop;
     
-    int m_IsKeyWPressed;
-    int m_IsKeySPressed;
+    bool m_IsKeyWPressed;
+    bool m_IsKeySPressed;
+    bool m_IsKeyReturnPressed;
 };
 #endif // !_MAIN_MENU_SCREEN_H

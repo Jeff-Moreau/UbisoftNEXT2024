@@ -8,14 +8,15 @@ AIPlayer::AIPlayer()
     p_Collider = new Collider();
     m_IsAlive = true;
     m_Position = Vector2(VectorZero);
-    p_AIPlayerTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 4);
-    p_AIPlayerTexture->SetFrame(0);
+    p_AIPlayerTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 8);
+    p_AIPlayerTexture->SetFrame(33);
     p_AIPlayerTexture->SetPosition(0, 0);
     p_AIPlayerTexture->SetScale(4.0f);
 
     p_Collider->SetCenter(m_Position);
     p_Collider->SetWidth(p_AIPlayerTexture->GetWidth() * 4);
     p_Collider->SetHeight(p_AIPlayerTexture->GetHeight() * 4);
+    p_Collider->SetDebug(false);
 
     SetupAnimations();
 }
@@ -23,8 +24,8 @@ AIPlayer::AIPlayer()
 void AIPlayer::SetupAnimations()
 {
     m_AnimationSpeed = 1.0f / 15.0f;
-    //p_AIPlayerTexture->CreateAnimation(IDLE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
-    //p_AIPlayerTexture->CreateAnimation(DIE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
+    p_AIPlayerTexture->CreateAnimation(IDLE_LEFT, m_AnimationSpeed, { 33,34,35,36,37,38 });
+    p_AIPlayerTexture->CreateAnimation(DIE_LEFT, m_AnimationSpeed, { 57,58,59,60,61,62,63,64 });
 }
 
 AIPlayer::~AIPlayer()
@@ -67,6 +68,11 @@ void AIPlayer::ResetPlayer()
 {
     m_TotalApples = 5;
     m_IsAlive = true;
+}
+
+void AIPlayer::SetDebug(bool yesNo)
+{
+    p_Collider->SetDebug(yesNo);
 }
 
 void AIPlayer::SetTotalApples(int amount)

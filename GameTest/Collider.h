@@ -16,7 +16,7 @@ public:
     void SetHeight(float height);
     void SetCenter(Vector2 center);
     Vector2 GetCenter();
-
+    void SetDebug(bool yesNo);
     void Init();
     void Update(float deltaTime);
     void Render();
@@ -26,6 +26,7 @@ private:
     Vector2 m_CenterPoint;
     Vector2 m_Corners[4];
 
+    bool m_IsDebugSet;
     float m_Width;
     float m_Height;
 };

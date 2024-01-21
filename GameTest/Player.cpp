@@ -8,7 +8,7 @@ Player::Player()
     p_Collider = new Collider();
     m_IsAlive = true;
     m_Position = Vector2(VectorZero);
-    p_PlayerTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 4);
+    p_PlayerTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 8);
     p_PlayerTexture->SetFrame(0);
     p_PlayerTexture->SetPosition(0, 0);
     p_PlayerTexture->SetScale(4.0f);
@@ -16,6 +16,7 @@ Player::Player()
     p_Collider->SetCenter(m_Position);
     p_Collider->SetWidth(p_PlayerTexture->GetWidth() * 4);
     p_Collider->SetHeight(p_PlayerTexture->GetHeight()* 4);
+    p_Collider->SetDebug(false);
 
     SetupAnimations();
 }
@@ -23,10 +24,8 @@ Player::Player()
 void Player::SetupAnimations()
 {
     m_AnimationSpeed = 1.0f / 15.0f;
-    //p_PlayerTexture->CreateAnimation(IDLE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
     p_PlayerTexture->CreateAnimation(IDLE_RIGHT, m_AnimationSpeed, { 0,1,2,3,4,5 });
-    //p_PlayerTexture->CreateAnimation(DIE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
-    //p_PlayerTexture->CreateAnimation(DIE_RIGHT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
+    p_PlayerTexture->CreateAnimation(DIE_RIGHT, m_AnimationSpeed, { 25,26,27,28,29,30,31,32 });
 }
 
 Player::~Player()
@@ -74,6 +73,11 @@ void Player::ResetPlayer()
 {
     m_TotalApples = 5;
     m_IsAlive = true;
+}
+
+void Player::SetDebug(bool yesNo)
+{
+    p_Collider->SetDebug(yesNo);
 }
 
 

@@ -17,6 +17,7 @@ public:
     void SetIsOnGround(bool yesNo);
     void SetIsAlive(bool yesNo);
     void ResetApple();
+    void SetDebug(bool yesNo);
     void TerrainHeight(float height);
     void IsHit(bool yesNo);
     void Init() override;

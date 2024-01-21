@@ -7,6 +7,7 @@ MainMenuScreen::MainMenuScreen()
 
     m_IsKeyWPressed = false;
     m_IsKeySPressed = false;
+    m_IsKeyReturnPressed = false;
 }
 
 void MainMenuScreen::SetupSprites()
@@ -62,20 +63,27 @@ void MainMenuScreen::Update(float deltaTime)
         m_IsKeySPressed = false;
     }
 
-    if (App::IsKeyPressed(VK_RETURN))
+    if (App::IsKeyPressed(VK_RETURN) && !m_IsKeyReturnPressed)
     {
         if (currentY == OPTION_ONE_HEIGHT + (p_Selector->GetHeight() * 0.5f))
         {
+            m_IsKeyReturnPressed = true;
             ScreenManager::GetInstance().SetCurrentScreen(Play);
         }
         else if (currentY == OPTION_TWO_HEIGHT + (p_Selector->GetHeight() * 0.5f))
         {
+            m_IsKeyReturnPressed = true;
             ScreenManager::GetInstance().SetCurrentScreen(Play);
         }
         else if (currentY == OPTION_THREE_HEIGHT + (p_Selector->GetHeight() * 0.5f))
         {
+            m_IsKeyReturnPressed = true;
             ScreenManager::GetInstance().SetCurrentScreen(Instructions);
         }
+    }
+    else if ((GetAsyncKeyState(VK_RETURN) & 0x8000) == 0)
+    {
+        m_IsKeyReturnPressed = false;
     }
 }
 

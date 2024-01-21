@@ -18,6 +18,7 @@ public:
     int GetTotalApples();
     void SetTotalApples(int amount);
     void ResetPlayer();
+    void SetDebug(bool yesNo);
     void Init() override;
     void Update(float deltaTime) override;
     void Render() override;

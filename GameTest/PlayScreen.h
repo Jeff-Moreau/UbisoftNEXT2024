@@ -5,6 +5,7 @@
 #include "Vector2.h"
 #include "TerrainGenerator.h"
 #include "Squirrel.h"
+#include "AISquirrel.h"
 #include "Tree.h"
 #include "Player.h"
 #include "AIPlayer.h"
@@ -37,21 +38,26 @@ private:
     
 private:
     TerrainGenerator* p_Terrain;
-    CSimpleSprite* p_AcornBullet;
+    CSimpleSprite* p_AcornBullet[2];
     CSimpleSprite* p_TargetLock;
     CSimpleSprite* p_Sight;
     CSimpleSprite* p_AppleTexture[10];
     Utilities* p_Utilities;
     Apple* p_Apple[10];
     Squirrel* p_PlayerSquirrel;
-    Squirrel* p_AISquirrel;
+    AISquirrel* p_AISquirrel;
     Player* p_Player;
     AIPlayer* p_AIPlayer;
     Tree* p_LeftTree;
     Tree* p_RightTree;
 
+    bool m_IsDebugSet;
+    bool m_IsKeyPPressed;
+    bool m_IsKeyOPressed;
+    bool m_IsKeyLPressed;
     bool m_IsTarget;
     bool m_CanHitApples;
+    bool m_AICanShoot;
     int m_Target;
     float m_Count;
     float m_TargetX;

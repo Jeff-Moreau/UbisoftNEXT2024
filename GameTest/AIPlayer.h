@@ -16,6 +16,7 @@ public:
     void SetTextureFrame(float frame);
     int GetTotalApples();
     void ResetPlayer();
+    void SetDebug(bool yesNo);
     void SetTotalApples(int amount);
     void Init() override;
     void Update(float deltaTime) override;

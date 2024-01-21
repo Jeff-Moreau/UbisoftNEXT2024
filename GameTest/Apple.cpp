@@ -17,6 +17,7 @@ Apple::Apple()
     p_Collider->SetCenter(m_Position);
     p_Collider->SetWidth(p_AppleTexture->GetWidth() * 2);
     p_Collider->SetHeight(p_AppleTexture->GetHeight() * 2);
+    p_Collider->SetDebug(false);
 }
 
 Apple::~Apple()
@@ -65,6 +66,11 @@ void Apple::ResetApple()
     m_IsOnGround = false;
     m_Falling = false;
     m_IsAlive = true;
+}
+
+void Apple::SetDebug(bool yesNo)
+{
+    p_Collider->SetDebug(yesNo);
 }
 
 void Apple::TerrainHeight(float height)

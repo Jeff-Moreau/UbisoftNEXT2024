@@ -5,7 +5,7 @@ Collider::Collider()
 {
     p_Utilities = new Utilities();
     m_CenterPoint = Vector2(VectorZero);
-
+    m_IsDebugSet = false;
     for (int i = 0; i < 4; i++)
     {
         m_Corners[i] = (Vector2(VectorZero));
@@ -39,6 +39,11 @@ Vector2 Collider::GetCenter()
     return m_CenterPoint;
 }
 
+void Collider::SetDebug(bool yesNo)
+{
+    m_IsDebugSet = yesNo;
+}
+
 void Collider::Init()
 {
 }
@@ -53,8 +58,11 @@ void Collider::Update(float deltaTime)
 
 void Collider::Render()
 {
-    App::DrawLine(m_Corners[0].x, m_Corners[0].y, m_Corners[1].x, m_Corners[1].y);
-    App::DrawLine(m_Corners[1].x, m_Corners[1].y, m_Corners[2].x, m_Corners[2].y);
-    App::DrawLine(m_Corners[2].x, m_Corners[2].y, m_Corners[3].x, m_Corners[3].y);
-    App::DrawLine(m_Corners[3].x, m_Corners[3].y, m_Corners[0].x, m_Corners[0].y);
+    if (m_IsDebugSet)
+    {
+        App::DrawLine(m_Corners[0].x, m_Corners[0].y, m_Corners[1].x, m_Corners[1].y);
+        App::DrawLine(m_Corners[1].x, m_Corners[1].y, m_Corners[2].x, m_Corners[2].y);
+        App::DrawLine(m_Corners[2].x, m_Corners[2].y, m_Corners[3].x, m_Corners[3].y);
+        App::DrawLine(m_Corners[3].x, m_Corners[3].y, m_Corners[0].x, m_Corners[0].y);
+    }
 }

@@ -18,6 +18,7 @@ public:
     bool Collecting();
     void ResetSquirrel();
     void IsHit();
+    void SetDebug(bool yesNo);
     void Init() override;
     void Update(float deltaTime) override;
     void Render() override;

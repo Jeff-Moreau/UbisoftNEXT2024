@@ -12,7 +12,7 @@ Squirrel::Squirrel()
     m_IsAlive = true;
     m_Position = Vector2(VectorZero);
 
-    p_SquirrelTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 4);
+    p_SquirrelTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 8);
     p_SquirrelTexture->SetFrame(0);
     p_SquirrelTexture->SetPosition(0, 0);
     p_SquirrelTexture->SetScale(2.0f);
@@ -20,6 +20,7 @@ Squirrel::Squirrel()
     p_Collider->SetCenter(m_Position);
     p_Collider->SetWidth(p_SquirrelTexture->GetWidth() * 2);
     p_Collider->SetHeight(p_SquirrelTexture->GetHeight() * 2);
+    p_Collider->SetDebug(false);
 
     SetupAnimations();
 }
@@ -31,10 +32,6 @@ void Squirrel::SetupAnimations()
     p_SquirrelTexture->CreateAnimation(MOVE_RIGHT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
     p_SquirrelTexture->CreateAnimation(COLLECT_RIGHT, m_AnimationSpeed, { 17,18,19,20,21,22 });
     p_SquirrelTexture->CreateAnimation(DIE_RIGHT, m_AnimationSpeed, { 25,26,27,28,29,30,31,32 });
-    p_SquirrelTexture->CreateAnimation(IDLE_LEFT, m_AnimationSpeed, { 0,1,2,3,4,5 });
-    p_SquirrelTexture->CreateAnimation(MOVE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
-    p_SquirrelTexture->CreateAnimation(COLLECT_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
-    p_SquirrelTexture->CreateAnimation(DIE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
 }
 
 Squirrel::~Squirrel()
@@ -89,6 +86,11 @@ void Squirrel::ResetSquirrel()
 void Squirrel::IsHit()
 {
     
+}
+
+void Squirrel::SetDebug(bool yesNo)
+{
+    p_Collider->SetDebug(yesNo);
 }
 
 void Squirrel::Init()

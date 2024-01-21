@@ -12,14 +12,15 @@ AISquirrel::AISquirrel()
     m_IsAlive = true;
     m_Position = Vector2(VectorZero);
 
-    p_AISquirrelTexture = App::CreateSprite(".\\TestData\\AISquirrels.bmp", 8, 4);
-    p_AISquirrelTexture->SetFrame(0);
+    p_AISquirrelTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 8);
+    p_AISquirrelTexture->SetFrame(33);
     p_AISquirrelTexture->SetPosition(0, 0);
     p_AISquirrelTexture->SetScale(2.0f);
 
     p_Collider->SetCenter(m_Position);
     p_Collider->SetWidth(p_AISquirrelTexture->GetWidth() * 2);
     p_Collider->SetHeight(p_AISquirrelTexture->GetHeight() * 2);
+    p_Collider->SetDebug(false);
 
     SetupAnimations();
 }
@@ -27,14 +28,10 @@ AISquirrel::AISquirrel()
 void AISquirrel::SetupAnimations()
 {
     m_AnimationSpeed = 1.0f / 15.0f;
-    p_AISquirrelTexture->CreateAnimation(IDLE_RIGHT, m_AnimationSpeed, { 0,1,2,3,4,5 });
-    p_AISquirrelTexture->CreateAnimation(MOVE_RIGHT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
-    p_AISquirrelTexture->CreateAnimation(COLLECT_RIGHT, m_AnimationSpeed, { 17,18,19,20,21,22 });
-    p_AISquirrelTexture->CreateAnimation(DIE_RIGHT, m_AnimationSpeed, { 25,26,27,28,29,30,31,32 });
-    p_AISquirrelTexture->CreateAnimation(IDLE_LEFT, m_AnimationSpeed, { 0,1,2,3,4,5 });
-    p_AISquirrelTexture->CreateAnimation(MOVE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
-    p_AISquirrelTexture->CreateAnimation(COLLECT_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
-    p_AISquirrelTexture->CreateAnimation(DIE_LEFT, m_AnimationSpeed, { 9,10,11,12,13,14,15,16 });
+    p_AISquirrelTexture->CreateAnimation(IDLE_LEFT, m_AnimationSpeed, { 33,34,35,36,37,38 });
+    p_AISquirrelTexture->CreateAnimation(MOVE_LEFT, m_AnimationSpeed, { 41,42,43,44,45,46,47,48 });
+    p_AISquirrelTexture->CreateAnimation(COLLECT_LEFT, m_AnimationSpeed, { 49,50,51,52,53,54 });
+    p_AISquirrelTexture->CreateAnimation(DIE_LEFT, m_AnimationSpeed, { 57,58,59,60,61,62,63,64 });
 }
 
 AISquirrel::~AISquirrel()
@@ -84,6 +81,11 @@ void AISquirrel::ResetSquirrel()
     m_PickUpApple = false;
     m_IsCollecting = false;
     m_IsAlive = true;
+}
+
+void AISquirrel::SetDebug(bool yesNo)
+{
+    p_Collider->SetDebug(yesNo);
 }
 
 void AISquirrel::Init()
