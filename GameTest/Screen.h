@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: Screen.h
+ * Date: January 21, 2024
+ * Description: Template for all Screens to use
+ * TODO: 
+ * Known Bugs:
+ ****************************************************************************************/
+
 #ifndef _SCREEN_H
 #define _SCREEN_H
 

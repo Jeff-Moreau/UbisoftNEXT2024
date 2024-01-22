@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: TerrainGenerator.h
+ * Date: January 21, 2024
+ * Description: This Procedurally generates a terrain for the game world.
+ * TODO:
+ * Known Bugs:
+ ****************************************************************************************/
+
 #ifndef _TERRAIN_GENERATOR_H
 #define _TERRAIN_GENERATOR_H
 
@@ -23,13 +31,12 @@ public:
     TerrainGenerator();
     ~TerrainGenerator();
     
-    void TerrainInit();
     void RandomizeTerrainHeight();
     void GenerateStartLocations();
     void GenerateAcornLocation();
     void GenerateTerrain();
 
-    float GetTerrainHeightAt(float xLocation);
+    float GetTerrainHeightAt(float xLocation) const;
 
 private:
     float m_SectionHeight[64];

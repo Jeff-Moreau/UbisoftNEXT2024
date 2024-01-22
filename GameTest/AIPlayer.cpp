@@ -1,24 +1,42 @@
+/****************************************************************************************
+ * Script: AIPlayer.cpp
+ * Date: January 21, 2024
+ * Description: This is the AIPlayer Object.
+ * TODO: Collider Work. more work on the AI system
+ * Known Bugs:
+ ****************************************************************************************/
+
 #include "stdafx.h"
 #include "AIPlayer.h"
 
 AIPlayer::AIPlayer()
 {
-    m_TotalApples = 5;
-    m_Object = 1;
     p_Collider = new Collider();
-    m_IsAlive = true;
-    m_Position = Vector2(VectorZero);
-    p_AIPlayerTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 8);
-    p_AIPlayerTexture->SetFrame(33);
-    p_AIPlayerTexture->SetPosition(0, 0);
-    p_AIPlayerTexture->SetScale(4.0f);
 
+    m_Position = Vector2(VectorZero);
+    m_TotalApples = 5;
+    m_Object = 2;
+    m_IsAlive = true;
+
+    SetupTextures();
+    SetupCollider();
+    SetupAnimations();
+}
+
+void AIPlayer::SetupCollider()
+{
     p_Collider->SetCenter(m_Position);
     p_Collider->SetWidth(p_AIPlayerTexture->GetWidth() * 4);
     p_Collider->SetHeight(p_AIPlayerTexture->GetHeight() * 4);
     p_Collider->SetDebug(false);
+}
 
-    SetupAnimations();
+void AIPlayer::SetupTextures()
+{
+    p_AIPlayerTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 8);
+    p_AIPlayerTexture->SetFrame(33);
+    p_AIPlayerTexture->SetPosition(0, 0);
+    p_AIPlayerTexture->SetScale(4.0f);
 }
 
 void AIPlayer::SetupAnimations()
@@ -37,6 +55,11 @@ AIPlayer::~AIPlayer()
 float AIPlayer::GetTextureHeight()
 {
     return p_AIPlayerTexture->GetHeight();
+}
+
+int AIPlayer::GetTotalApples()
+{
+    return m_TotalApples;
 }
 
 int AIPlayer::GetObjectID()
@@ -59,15 +82,9 @@ void AIPlayer::SetTextureFrame(float frame)
     p_AIPlayerTexture->SetFrame(frame);
 }
 
-int AIPlayer::GetTotalApples()
+void AIPlayer::SetTotalApples(int amount)
 {
-    return m_TotalApples;
-}
-
-void AIPlayer::ResetPlayer()
-{
-    m_TotalApples = 5;
-    m_IsAlive = true;
+    m_TotalApples += amount;
 }
 
 void AIPlayer::SetDebug(bool yesNo)
@@ -75,11 +92,11 @@ void AIPlayer::SetDebug(bool yesNo)
     p_Collider->SetDebug(yesNo);
 }
 
-void AIPlayer::SetTotalApples(int amount)
+void AIPlayer::ResetPlayer()
 {
-    m_TotalApples += amount;
+    m_TotalApples = 5;
+    m_IsAlive = true;
 }
-
 
 void AIPlayer::Init()
 {

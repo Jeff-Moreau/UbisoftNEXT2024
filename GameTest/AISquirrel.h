@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: AISquirrel.h
+ * Date: January 21, 2024
+ * Description: This is the AISquirrel Object.
+ * TODO: Collider Work.
+ * Known Bugs:
+ ****************************************************************************************/
+
 #ifndef _AISQUIRREL_H
 #define _AISQUIRREL_H
 
@@ -11,18 +19,23 @@ public:
 
     float GetTextureHeight();
     float GetTextureWidth();
+    void GetApples();
+
     void SetAnimationType(AnimType animation);
     void SetTextureScale(float size);
-    void GetApples();
+    void SetDebug(bool yesNo);
+
+    void ResetSquirrel();
     void PickUpApple();
     bool Collecting();
-    void ResetSquirrel();
-    void SetDebug(bool yesNo);
+
     void Init() override;
     void Update(float deltaTime) override;
     void Render() override;
 
 private:
+    void SetupColliders();
+    void SetupTextures();
     void SetupAnimations();
 
 private:

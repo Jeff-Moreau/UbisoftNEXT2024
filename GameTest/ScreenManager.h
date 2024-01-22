@@ -1,12 +1,21 @@
+/****************************************************************************************
+ * Script: ScreenManager.h
+ * Date: January 21, 2024
+ * Description: Manages the changing between screens for the prorgam
+ * TODO:
+ * Known Bugs:
+ ****************************************************************************************/
+
 #ifndef _SCREEN_MANAGER_H
 #define _SCREEN_MANAGER_H
 
 #include <vector>
-#include "Screen.h"
-#include "MainMenuScreen.h"
-#include "PlayScreen.h"
-#include "ResultsScreen.h"
+
 #include "InstructionsScreen.h"
+#include "MainMenuScreen.h"
+#include "ResultsScreen.h"
+#include "PlayScreen.h"
+#include "Screen.h"
 
 enum Screens
 {
@@ -20,11 +29,12 @@ class ScreenManager
 {
 public:
     static ScreenManager &ScreenManager::GetInstance();
+
     ScreenManager();
     ~ScreenManager();
 
-    void SetCurrentScreen(Screens screen);
     Screen* GetScreen(Screens screen);
+    void SetCurrentScreen(Screens screen);
     
     void Init();
     void Update(float deltaTime);

@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: Utilities.cpp
+ * Date: January 21, 2024
+ * Description: This provides some functionality for Numbers
+ * TODO:
+ * Known Bugs:
+ ****************************************************************************************/
+
 #include "stdafx.h"
 #include "Utilities.h"
 

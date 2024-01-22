@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: ResultsScreen.h
+ * Date: January 21, 2024
+ * Description: Gameover screen and show results of the match
+ * TODO: needs more work
+ * Known Bugs:
+ ****************************************************************************************/
+
 #ifndef _RESULTS_SCREEN_H
 #define _RESULTS_SCREEN_H
 

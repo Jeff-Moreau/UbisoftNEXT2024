@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: ResultsScreen.cpp
+ * Date: January 21, 2024
+ * Description: Gameover screen and show results of the match
+ * TODO: needs more work
+ * Known Bugs:
+ ****************************************************************************************/
+
 #include "stdafx.h"
 #include "ResultsScreen.h"
 

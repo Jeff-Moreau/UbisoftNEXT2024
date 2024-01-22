@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: Utilities.h
+ * Date: January 21, 2024
+ * Description: This provides some functionality for Numbers
+ * TODO:
+ * Known Bugs:
+ ****************************************************************************************/
+
 #ifndef _UTILITIES_H
 #define _UTILITIES_H
 

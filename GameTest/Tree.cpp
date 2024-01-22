@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: Tree.cpp
+ * Date: January 21, 2024
+ * Description: The Tree object
+ * TODO: Need to get Colliders working and health working
+ * Known Bugs:
+ ****************************************************************************************/
+
 #include "stdafx.h"
 #include "Tree.h"
 
@@ -5,6 +13,12 @@ Tree::Tree()
 {
     m_IsAlive = true;
     m_Position = Vector2(VectorZero);
+
+    SetupTextures();
+}
+
+void Tree::SetupTextures()
+{
     p_TreeTexture = App::CreateSprite(".\\TestData\\Trees.bmp", 3, 2);
     p_TreeTexture->SetFrame(0);
     p_TreeTexture->SetPosition(0, 0);

@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: MainMenu.cpp
+ * Date: January 21, 2024
+ * Description: MainMenu of the Game
+ * TODO: There is no 2 Player Game needs to be coded in, it is Unfinished.
+ * Known Bugs:
+ ****************************************************************************************/
+
 #include "stdafx.h"
 #include "MainMenuScreen.h"
 
@@ -100,4 +108,6 @@ void MainMenuScreen::OptionsList()
     App::Print(HALF_WINDOW_WIDTH, OPTION_ONE_HEIGHT, "1 PLAYER");
     App::Print(HALF_WINDOW_WIDTH, OPTION_TWO_HEIGHT, "2 PLAYER");
     App::Print(HALF_WINDOW_WIDTH, OPTION_THREE_HEIGHT, "INSTRUCTIONS");
+    App::Print(HALF_WINDOW_WIDTH, OPTION_THREE_HEIGHT - 50, "PRESS W or S for up and down, press ENTER to select");
+    App::Print(HALF_WINDOW_WIDTH, OPTION_THREE_HEIGHT - 75, "2 PLAYER just gives you 1 PLAYER right now");
 }

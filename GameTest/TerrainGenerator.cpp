@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: TerrainGenerator.cpp
+ * Date: January 21, 2024
+ * Description: This Procedurally generates a terrain for the game world.
+ * TODO:
+ * Known Bugs:
+ ****************************************************************************************/
+
 #include "stdafx.h"
 #include "TerrainGenerator.h"
 
@@ -14,14 +22,6 @@ TerrainGenerator::~TerrainGenerator()
 {
     delete p_Utilities;
     p_Utilities = nullptr;
-}
-
-void TerrainGenerator::TerrainInit()
-{
-    testSprite = App::CreateSprite(".\\TestData\\Textures.bmp", 32, 32);
-    testSprite->SetFrame(1);
-    testSprite->SetScale(2.0f);
-    App::Print(400, 400, "Hello");
 }
 
 void TerrainGenerator::RandomizeTerrainHeight()
@@ -85,7 +85,7 @@ void TerrainGenerator::GenerateTerrain()
     }
 }
 
-float TerrainGenerator::GetTerrainHeightAt(float xLocation)
+float TerrainGenerator::GetTerrainHeightAt(float xLocation) const
 {
     int terrainHeight = (xLocation * TOTAL_SECTIONS) / WINDOW_WIDTH;
 

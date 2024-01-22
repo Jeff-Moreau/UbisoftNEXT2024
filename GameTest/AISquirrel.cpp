@@ -1,28 +1,45 @@
+/****************************************************************************************
+ * Script: AISquirrel.cpp
+ * Date: January 21, 2024
+ * Description: This is the AISquirrel Object.
+ * TODO: Collider Work.
+ * Known Bugs:
+ ****************************************************************************************/
+
 #include "stdafx.h"
 #include "AISquirrel.h"
 
 AISquirrel::AISquirrel()
 {
     p_Collider = new Collider();
-    m_GetApple = false;
-    m_PickUpApple = false;
-    m_IsCollecting = false;
-    m_MoveSpeed = 1;
-    m_Count = 0;
-    m_IsAlive = true;
+
     m_Position = Vector2(VectorZero);
+    m_IsCollecting = false;
+    m_PickUpApple = false;
+    m_GetApple = false;
+    m_IsAlive = true;
+    m_MoveSpeed = 3;
+    m_Count = 0;
 
-    p_AISquirrelTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 8);
-    p_AISquirrelTexture->SetFrame(33);
-    p_AISquirrelTexture->SetPosition(0, 0);
-    p_AISquirrelTexture->SetScale(2.0f);
+    SetupTextures();
+    SetupColliders();
+    SetupAnimations();
+}
 
+void AISquirrel::SetupColliders()
+{
     p_Collider->SetCenter(m_Position);
     p_Collider->SetWidth(p_AISquirrelTexture->GetWidth() * 2);
     p_Collider->SetHeight(p_AISquirrelTexture->GetHeight() * 2);
     p_Collider->SetDebug(false);
+}
 
-    SetupAnimations();
+void AISquirrel::SetupTextures()
+{
+    p_AISquirrelTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 8);
+    p_AISquirrelTexture->SetFrame(33);
+    p_AISquirrelTexture->SetPosition(0, 0);
+    p_AISquirrelTexture->SetScale(2.0f);
 }
 
 void AISquirrel::SetupAnimations()
@@ -103,16 +120,15 @@ void AISquirrel::Update(float deltaTime)
 
     if (m_GetApple)
     {
-        p_AISquirrelTexture->SetAnimation(MOVE_RIGHT);
-        m_Position.x = m_Position.x + m_MoveSpeed;
-        m_Position.y = p_Terrain->GetTerrainHeightAt(m_Position.x + 32) + (p_AISquirrelTexture->GetHeight() * 0.5f);
+        p_AISquirrelTexture->SetAnimation(MOVE_LEFT);
+        m_Position.x = m_Position.x - m_MoveSpeed;
     }
 
     if (m_PickUpApple)
     {
         m_GetApple = false;
         m_IsCollecting = true;
-        p_AISquirrelTexture->SetAnimation(COLLECT_RIGHT);
+        p_AISquirrelTexture->SetAnimation(COLLECT_LEFT);
     }
 }
 

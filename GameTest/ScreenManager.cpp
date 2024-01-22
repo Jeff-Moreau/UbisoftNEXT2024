@@ -1,3 +1,10 @@
+/****************************************************************************************
+ * Script: ScreenManager.cpp
+ * Date: January 21, 2024
+ * Description: Manages the changing between screens for the prorgam
+ * TODO:
+ * Known Bugs:
+ ****************************************************************************************/
 #include "stdafx.h"
 #include "ScreenManager.h"
 

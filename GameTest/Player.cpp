@@ -1,24 +1,42 @@
+/****************************************************************************************
+ * Script: Player.cpp
+ * Date: January 21, 2024
+ * Description: This is the Player Object.
+ * TODO: Collider Work.
+ * Known Bugs:
+ ****************************************************************************************/
+
 #include "stdafx.h"
 #include "Player.h"
 
 Player::Player()
 {
+    p_Collider = new Collider();
+
+    m_Position = Vector2(VectorZero);
+    m_IsAlive = true;
     m_TotalApples = 5;
     m_Object = 1;
-    p_Collider = new Collider();
-    m_IsAlive = true;
-    m_Position = Vector2(VectorZero);
+
+    SetupTextures();
+    SetupCollider();
+    SetupAnimations();
+}
+
+void Player::SetupCollider()
+{
+    p_Collider->SetCenter(m_Position);
+    p_Collider->SetWidth(p_PlayerTexture->GetWidth() * 4);
+    p_Collider->SetHeight(p_PlayerTexture->GetHeight() * 4);
+    p_Collider->SetDebug(false);
+}
+
+void Player::SetupTextures()
+{
     p_PlayerTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 8);
     p_PlayerTexture->SetFrame(0);
     p_PlayerTexture->SetPosition(0, 0);
     p_PlayerTexture->SetScale(4.0f);
-
-    p_Collider->SetCenter(m_Position);
-    p_Collider->SetWidth(p_PlayerTexture->GetWidth() * 4);
-    p_Collider->SetHeight(p_PlayerTexture->GetHeight()* 4);
-    p_Collider->SetDebug(false);
-
-    SetupAnimations();
 }
 
 void Player::SetupAnimations()
@@ -39,7 +57,12 @@ float Player::GetTextureHeight()
     return p_PlayerTexture->GetHeight();
 }
 
-int Player::GetObjectID()
+int Player::GetTotalApples() const
+{
+    return m_TotalApples;
+}
+
+int Player::GetObjectID() const
 {
     return m_Object;;
 }
@@ -59,20 +82,9 @@ void Player::SetTextureFrame(float frame)
     p_PlayerTexture->SetFrame(frame);
 }
 
-int Player::GetTotalApples()
-{
-    return m_TotalApples;
-}
-
 void Player::SetTotalApples(int amount)
 {
     m_TotalApples += amount;
-}
-
-void Player::ResetPlayer()
-{
-    m_TotalApples = 5;
-    m_IsAlive = true;
 }
 
 void Player::SetDebug(bool yesNo)
@@ -80,6 +92,11 @@ void Player::SetDebug(bool yesNo)
     p_Collider->SetDebug(yesNo);
 }
 
+void Player::ResetPlayer()
+{
+    m_TotalApples = 5;
+    m_IsAlive = true;
+}
 
 void Player::Init()
 {

@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: Entity.h
+ * Date: January 21, 2024
+ * Description: This is a base class for every item in the program
+ * TODO:
+ * Known Bugs:
+ ****************************************************************************************/
+
 #ifndef _ENTITY_H
 #define _ENTITY_H
 
@@ -31,17 +39,17 @@ public:
     Entity(float x = 0.0f, float y = 0.0f);
     ~Entity();
 
-    Vector2 GetPosition();
-    Vector2 GetScale();
-    float GetRotation();
+    Vector2 GetPosition() const;
+    Vector2 GetScale() const;
+    float GetRotation() const;
+    bool GetIsAlive() const;
     
     void SetPosition(float x, float y);
     void SetPosition(Vector2& position);
     void SetRotation(float rotation);
-    void Translate(Vector2 vector);
-
-    bool GetIsAlive();
     void SetIsAlive(bool yesNo);
+
+    void Translate(Vector2 vector);
 
     virtual void Init() = 0;
     virtual void Update(float deltaTime) = 0;
@@ -51,10 +59,11 @@ protected:
     TerrainGenerator* p_Terrain;
     Utilities* p_Utilities;
     Collider* p_Collider;
+
     Vector2 m_Position;
     Vector2 m_Scale;
+    float m_AnimationSpeed;
     float m_Rotation;
     bool m_IsAlive;
-    float m_AnimationSpeed;
 };
 #endif // !_ENTITY_H

@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: InstructionScreen.h
+ * Date: January 21, 2024
+ * Description: Instructions for game play.
+ * TODO: Unfinished, needs for information on how to play the game.
+ * Known Bugs:
+ ****************************************************************************************/
+
 #ifndef _INSTRUCTIONS_SCREEN_H
 #define _INSTRUCTIONS_SCREEN_H
 

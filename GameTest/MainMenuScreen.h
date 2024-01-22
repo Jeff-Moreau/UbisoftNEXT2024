@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: MainMenu.h
+ * Date: January 21, 2024
+ * Description: MainMenu of the Game
+ * TODO: There is no 2 Player Game needs to be coded in, it is Unfinished.
+ * Known Bugs:
+ ****************************************************************************************/
+
 #ifndef _MAIN_MENU_SCREEN_H
 #define _MAIN_MENU_SCREEN_H
 

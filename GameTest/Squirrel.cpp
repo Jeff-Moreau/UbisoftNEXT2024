@@ -1,29 +1,47 @@
+/****************************************************************************************
+ * Script: Squirrel.cpp
+ * Date: January 21, 2024
+ * Description: This is the Squirrel Object.
+ * TODO: Still needs work with Colliders.
+ * Known Bugs:
+ ****************************************************************************************/
+
 #include "stdafx.h"
 #include "Squirrel.h"
 
 Squirrel::Squirrel()
 {
     p_Collider = new Collider();
-    m_GetApple = false;
-    m_PickUpApple = false;
-    m_IsCollecting = false;
-    m_MoveSpeed = 5;
-    m_Count = 0;
-    m_IsAlive = true;
-    m_Position = Vector2(VectorZero);
 
+    m_Position = Vector2(VectorZero);
+    m_IsCollecting = false;
+    m_PickUpApple = false;
+    m_GetApple = false;
+    m_IsAlive = true;
+    m_MoveSpeed = 3;
+    m_Count = 0;
+
+    SetupTextures();
+    SetupCollider();
+    SetupAnimations();
+}
+
+void Squirrel::SetupTextures()
+{
     p_SquirrelTexture = App::CreateSprite(".\\TestData\\Squirrels.bmp", 8, 8);
     p_SquirrelTexture->SetFrame(0);
     p_SquirrelTexture->SetPosition(0, 0);
     p_SquirrelTexture->SetScale(2.0f);
+}
 
+void Squirrel::SetupCollider()
+{
     p_Collider->SetCenter(m_Position);
     p_Collider->SetWidth(p_SquirrelTexture->GetWidth() * 2);
     p_Collider->SetHeight(p_SquirrelTexture->GetHeight() * 2);
     p_Collider->SetDebug(false);
-
-    SetupAnimations();
 }
+
 
 void Squirrel::SetupAnimations()
 {
@@ -38,6 +56,9 @@ Squirrel::~Squirrel()
 {
     delete p_SquirrelTexture;
     p_SquirrelTexture = nullptr;
+
+    delete p_Collider;
+    p_Collider = nullptr;
 }
 
 float Squirrel::GetTextureHeight()
@@ -50,6 +71,11 @@ float Squirrel::GetTextureWidth()
     return p_SquirrelTexture->GetWidth();
 }
 
+void Squirrel::GetApples()
+{
+    m_GetApple = true;
+}
+
 void Squirrel::SetAnimationType(AnimType animation)
 {
     p_SquirrelTexture->SetAnimation(animation);
@@ -60,9 +86,17 @@ void Squirrel::SetTextureScale(float size)
     p_SquirrelTexture->SetScale(size);
 }
 
-void Squirrel::GetApples()
+void Squirrel::SetDebug(bool yesNo)
 {
-    m_GetApple = true;
+    p_Collider->SetDebug(yesNo);
+}
+
+void Squirrel::ResetSquirrel()
+{
+    m_IsCollecting = false;
+    m_PickUpApple = false;
+    m_GetApple = false;
+    m_IsAlive = true;
 }
 
 void Squirrel::PickUpApple()
@@ -70,27 +104,14 @@ void Squirrel::PickUpApple()
     m_PickUpApple = true;
 }
 
-bool Squirrel::Collecting()
+bool Squirrel::Collecting() const
 {
     return m_IsCollecting;
-}
-
-void Squirrel::ResetSquirrel()
-{
-    m_GetApple = false;
-    m_PickUpApple = false;
-    m_IsCollecting = false;
-    m_IsAlive = true;
 }
 
 void Squirrel::IsHit()
 {
     
-}
-
-void Squirrel::SetDebug(bool yesNo)
-{
-    p_Collider->SetDebug(yesNo);
 }
 
 void Squirrel::Init()
@@ -106,12 +127,14 @@ void Squirrel::Update(float deltaTime)
     p_Collider->SetCenter(m_Position);
     p_Collider->Update(deltaTime);
 
+    // Go get the Apple
     if (m_GetApple)
     {
         p_SquirrelTexture->SetAnimation(MOVE_RIGHT);
         m_Position.x = m_Position.x + m_MoveSpeed;
     }
 
+    // Stop and Pickup Apple
     if (m_PickUpApple)
     {
         m_GetApple = false;

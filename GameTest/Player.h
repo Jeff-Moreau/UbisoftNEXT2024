@@ -1,3 +1,11 @@
+/****************************************************************************************
+ * Script: Player.h
+ * Date: January 21, 2024
+ * Description: This is the Player Object.
+ * TODO: Collider Work.
+ * Known Bugs:
+ ****************************************************************************************/
+
 #ifndef _PLAYER_H
 #define _PLAYER_H
 
@@ -11,26 +19,31 @@ public:
     ~Player();
 
     float GetTextureHeight();
-    int GetObjectID();
+    int GetTotalApples() const;
+    int GetObjectID() const;
+
     void SetTextureScale(float size);
     void SetAnimationType(AnimType animation);
     void SetTextureFrame(float frame);
-    int GetTotalApples();
     void SetTotalApples(int amount);
-    void ResetPlayer();
     void SetDebug(bool yesNo);
+
+    void ResetPlayer();
+
     void Init() override;
     void Update(float deltaTime) override;
     void Render() override;
 
 private:
+    void SetupCollider();
+    void SetupTextures();
     void SetupAnimations();
 
 private:
     CSimpleSprite* p_PlayerTexture;
 
     float m_AnimationSpeed;
-    int m_Object;
     int m_TotalApples;
+    int m_Object;
 };
 #endif // !_PLAYER_H
